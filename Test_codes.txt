@@ -1,0 +1,22 @@
+class Solution {
+    public TreeNode find(TreeNode root,TreeNode root1,int level)
+    {
+        if(root.left==null&&root.right==null||root1.left==null&&root1.right==null)
+        {
+            return root;
+        }
+        TreeNode left=find(root.left,level+1);
+        TreeNode right=find(root.right,level+1);
+        if(level%2==0)
+        {
+            int temp=left.val;
+            left.val=right.val;
+            right.val=temp;
+        }
+        return root;
+    }
+    public TreeNode reverseOddLevels(TreeNode root) {
+        int level=0;
+        return find(root.left,root.right,level);
+    }
+}
